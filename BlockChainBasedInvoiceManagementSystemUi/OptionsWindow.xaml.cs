@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using BlockChainBasedInvoiceManagementSystemUi.Properties;
+using Microsoft.Win32;
 using static BlockChainBasedInvoiceManagementSystemUi.Utils;
 
 namespace BlockChainBasedInvoiceManagementSystemUi {
@@ -23,20 +24,20 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 		}
 
 		private void CommandLineApiFile_Browse_Btn_OnClick(object sender, RoutedEventArgs e) =>
-			CommandLineApiFile_TextBlock.Text = OpenFileDialogBox(new[] {
+			CommandLineApiFile_TextBlock.Text = ShowFileDialogBox<OpenFileDialog>(new[] {
 				("Executable files", "*.exe"),
 				("Batch/CMD files", "*.bat;*.cmd"),
 				("All files", "*.*"),
 			}, this);
 
 		private void PublicKeyFile_Browse_Btn_OnClick(object sender, RoutedEventArgs e) =>
-			PublicKeyFile_TextBlock.Text = OpenFileDialogBox(new[] {
+			PublicKeyFile_TextBlock.Text = ShowFileDialogBox<OpenFileDialog>(new[] {
 				("PEM Encryption key file", "*.pem"),
 				("All files", "*.*"),
 			}, this);
 
 		private void PrivateKeyFile_Browse_Btn_OnClick(object sender, RoutedEventArgs e) =>
-			PrivateKeyFile_TextBlock.Text = OpenFileDialogBox(new[] {
+			PrivateKeyFile_TextBlock.Text = ShowFileDialogBox<OpenFileDialog>(new[] {
 				("PEM Encryption key file", "*.pem"),
 				("All files", "*.*"),
 			}, this);

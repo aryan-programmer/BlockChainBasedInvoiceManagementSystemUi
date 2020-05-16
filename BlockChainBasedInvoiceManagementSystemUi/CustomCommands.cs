@@ -21,5 +21,15 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 				 new KeyGesture(Key.O, ModifierKeys.Control)
 			 }
 			);
+
+		public static readonly RoutedUICommand GenerateKeys = new RoutedUICommand
+			(
+			 "Generate Keys",
+			 "GenerateKeys",
+			 typeof(CustomCommands),
+			 new InputGestureCollection {
+				 new KeyGesture(Key.G, ModifierKeys.Control)
+			 }
+			);
 	}
 }

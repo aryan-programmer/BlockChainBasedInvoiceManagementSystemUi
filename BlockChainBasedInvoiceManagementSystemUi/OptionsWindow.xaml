@@ -6,8 +6,9 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:local="clr-namespace:BlockChainBasedInvoiceManagementSystemUi"
 	mc:Ignorable="d"
-	ResizeMode="NoResize"
-	Title="Options" Width="800" Height="590">
+	Title="Options"
+	MinWidth="800"
+	MinHeight="590">
 	<Window.Resources>
 		<local:OptionsDataSource x:Key="Options" />
 
@@ -60,7 +61,7 @@
 			Grid.Column="1"
 			VerticalAlignment="Top"
 			Orientation="Vertical"
-			Margin="10,10,10,10" Height="96">
+			Margin="10" Height="96">
 			<Button
 				x:Name="CommandLineApiFile_Browse_Btn"
 				Height="25"
@@ -171,7 +172,7 @@
 			Grid.Column="1"
 			VerticalAlignment="Top"
 			Height="40"
-			Orientation="Vertical" Margin="10,10,10,10">
+			Orientation="Vertical" Margin="10">
 			<TextBox
 				x:Name="PeersTextBox"
 				Height="25"
@@ -217,7 +218,7 @@
 			Grid.Column="1"
 			VerticalAlignment="Top"
 			Orientation="Vertical"
-			Margin="10,10,10,10" Height="96">
+			Margin="10" Height="96">
 			<Button
 				x:Name="PublicKeyFile_Browse_Btn"
 				Height="25"
@@ -257,7 +258,7 @@
 			Grid.Row="5"
 			Grid.Column="1"
 			VerticalAlignment="Top"
-			Orientation="Vertical" Margin="10,10,10,10" Height="96">
+			Orientation="Vertical" Margin="10" Height="96">
 			<Button
 				x:Name="PrivateKeyFile_Browse_Btn"
 				Height="25"
