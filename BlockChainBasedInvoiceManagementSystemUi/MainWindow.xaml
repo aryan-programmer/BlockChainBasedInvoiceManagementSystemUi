@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BlockChainBasedInvoiceManagementSystemUi"
         mc:Ignorable="d"
-        Title="Block chain based invoice management system" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        ResizeMode="NoResize"
+        Title="Block chain based invoice management system" Height="400" Width="575">
+	<Window.CommandBindings>
+		<CommandBinding Command="local:CustomCommands.Exit" Executed="ExitCmd_OnExecuted" />
+		<CommandBinding Command="local:CustomCommands.Options" Executed="OptionsCmd_OnExecuted" />
+	</Window.CommandBindings>
+	<Grid>
+		<Menu VerticalAlignment="Top" FontSize="14">
+			<MenuItem Header="File">
+				<MenuItem Command="local:CustomCommands.Options" />
+				<Separator />
+				<MenuItem Command="local:CustomCommands.Exit" />
+			</MenuItem>
+		</Menu>
+	</Grid>
 </Window>
