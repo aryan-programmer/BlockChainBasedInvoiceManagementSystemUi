@@ -6,7 +6,7 @@ using static BlockChainBasedInvoiceManagementSystemUi.Utils;
 
 namespace BlockChainBasedInvoiceManagementSystemUi {
 	/// <summary>
-	/// Interaction logic for OptionsWindow.xaml
+	///     Interaction logic for OptionsWindow.xaml
 	/// </summary>
 	public partial class OptionsWindow : Window {
 		public OptionsWindow() {
@@ -22,19 +22,19 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 		private void CommandLineApiFile_Browse_Btn_OnClick(object sender, RoutedEventArgs e) =>
 			CommandLineApiFile_TextBlock.Text = ShowFileDialogBox<OpenFileDialog>(new[] {
 				("Executable files", "*.exe"),
-				("All files", "*.*"),
+				("All files", "*.*")
 			}, this);
 
 		private void PublicKeyFile_Browse_Btn_OnClick(object sender, RoutedEventArgs e) =>
 			PublicKeyFile_TextBlock.Text = ShowFileDialogBox<OpenFileDialog>(new[] {
 				("PEM Encryption key file", "*.pem"),
-				("All files", "*.*"),
+				("All files", "*.*")
 			}, this);
 
 		private void PrivateKeyFile_Browse_Btn_OnClick(object sender, RoutedEventArgs e) =>
 			PrivateKeyFile_TextBlock.Text = ShowFileDialogBox<OpenFileDialog>(new[] {
 				("PEM Encryption key file", "*.pem"),
-				("All files", "*.*"),
+				("All files", "*.*")
 			}, this);
 
 		private void OkBtn_OnClick(object sender, RoutedEventArgs e) {
@@ -45,12 +45,12 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			var publicKeyFile      = PublicKeyFile_TextBlock.Text;
 			var privateKeyFile     = PrivateKeyFile_TextBlock.Text;
 			if (ValidateSettings_ShowErrors(
-											  commandLineApiFile,
-											  apiPort,
-											  p2PPort,
-											  peers,
-											  publicKeyFile,
-											  privateKeyFile)
+											commandLineApiFile,
+											apiPort,
+											p2PPort,
+											peers,
+											publicKeyFile,
+											privateKeyFile)
 			) return;
 
 			Settings.Default["CommandLineApiFile"] = commandLineApiFile;

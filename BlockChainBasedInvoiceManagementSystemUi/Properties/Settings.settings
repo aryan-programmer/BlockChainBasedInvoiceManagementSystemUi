@@ -1,24 +1,27 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BlockChainBasedInvoiceManagementSystemUi.Properties" GeneratedClassName="Settings">
-  <Profiles />
-  <Settings>
-    <Setting Name="CommandLineApiFile" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="ApiPort" Type="System.UInt32" Scope="User">
-      <Value Profile="(Default)">3000</Value>
-    </Setting>
-    <Setting Name="P2PPort" Type="System.UInt32" Scope="User">
-      <Value Profile="(Default)">4000</Value>
-    </Setting>
-    <Setting Name="Peers" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="PublicKeyFile" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="PrivateKeyFile" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-  </Settings>
+
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)"
+              GeneratedClassNamespace="BlockChainBasedInvoiceManagementSystemUi.Properties"
+              GeneratedClassName="Settings">
+	<Profiles />
+	<Settings>
+		<Setting Name="CommandLineApiFile" Type="System.String" Scope="User">
+			<Value Profile="(Default)" />
+		</Setting>
+		<Setting Name="ApiPort" Type="System.UInt32" Scope="User">
+			<Value Profile="(Default)">3000</Value>
+		</Setting>
+		<Setting Name="P2PPort" Type="System.UInt32" Scope="User">
+			<Value Profile="(Default)">4000</Value>
+		</Setting>
+		<Setting Name="Peers" Type="System.String" Scope="User">
+			<Value Profile="(Default)" />
+		</Setting>
+		<Setting Name="PublicKeyFile" Type="System.String" Scope="User">
+			<Value Profile="(Default)" />
+		</Setting>
+		<Setting Name="PrivateKeyFile" Type="System.String" Scope="User">
+			<Value Profile="(Default)" />
+		</Setting>
+	</Settings>
 </SettingsFile>

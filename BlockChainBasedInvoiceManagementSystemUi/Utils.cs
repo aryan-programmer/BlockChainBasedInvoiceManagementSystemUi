@@ -95,17 +95,14 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 		) {
 			var errors = new List<string>();
 
-			if (!ValidatePort(apiPort)) {
+			if (!ValidatePort(apiPort)) 
 				errors.Add("Invalid API port, it must be a valid number more than 1000");
-			}
 
-			if (!ValidatePort(p2PPort)) {
+			if (!ValidatePort(p2PPort)) 
 				errors.Add("Invalid P2P port, it must be a valid number more than 1000");
-			}
 
-			if (apiPort == p2PPort) {
+			if (apiPort == p2PPort) 
 				errors.Add("The P2P and API ports must not be equal");
-			}
 
 			return ValidateSettings_Rest_ShowErrors(
 													commandLineApiFile,
@@ -125,17 +122,14 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 		) {
 			var errors = new List<string>();
 
-			if (apiPort < 1000) {
-				errors.Add("Invalid API port, it must be a valid number more than 1000");
-			}
+			if (apiPort < 1000) 
+				errors.Add("Invalid API port, it must be a more than 1000");
 
-			if (p2PPort < 1000) {
-				errors.Add("Invalid P2P port, it must be a valid number more than 1000");
-			}
+			if (p2PPort < 1000) 
+				errors.Add("Invalid P2P port, it must be a more than 1000");
 
-			if (apiPort == p2PPort) {
+			if (apiPort == p2PPort) 
 				errors.Add("The P2P and API ports must not be equal");
-			}
 
 			return ValidateSettings_Rest_ShowErrors(
 													commandLineApiFile,
@@ -152,21 +146,17 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			string              privateKeyFile,
 			ICollection<string> errors
 		) {
-			if (!File.Exists(commandLineApiFile)) {
+			if (!File.Exists(commandLineApiFile))
 				errors.Add("The command line API file must refer to an executable, a batch file or command prompt file.");
-			}
 
-			if (!ValidatePeers(peers)) {
+			if (!ValidatePeers(peers))
 				errors.Add("Invalid Peers list, it must be of a string of IPs/URLs of peers, with P2P ports, separated by commas");
-			}
 
-			if (!File.Exists(publicKeyFile)) {
+			if (!File.Exists(publicKeyFile))
 				errors.Add("The public key file must refer to a plain text file containing the public key in PEM format (the default format in this application).");
-			}
 
-			if (!File.Exists(privateKeyFile)) {
+			if (!File.Exists(privateKeyFile))
 				errors.Add("The private key file must refer to a plain text file containing the private key in PEM format (the default format in this application).");
-			}
 
 			if (errors.Count != 0) {
 				ShowErrorMBox(errors.Aggregate("There are some error(s):", (ret, err) => $"{ret}\n{err}"));

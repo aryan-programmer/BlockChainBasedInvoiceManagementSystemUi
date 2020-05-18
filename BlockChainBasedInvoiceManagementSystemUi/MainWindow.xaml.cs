@@ -8,17 +8,17 @@ using static BlockChainBasedInvoiceManagementSystemUi.Utils;
 
 namespace BlockChainBasedInvoiceManagementSystemUi {
 	/// <summary>
-	/// Interaction logic for MainWindow.xaml
+	///     Interaction logic for MainWindow.xaml
 	/// </summary>
 	public partial class MainWindow : Window {
 		public MainWindow() {
 			InitializeComponent();
 			if (ServerProcess.IsStarted) {
-				ShowWhenServerOff.Visibility          = Visibility.Collapsed;
-				ShowWhenServerOn.Visibility = Visibility.Visible;
+				ShowWhenServerOff.Visibility = Visibility.Collapsed;
+				ShowWhenServerOn.Visibility  = Visibility.Visible;
 			} else {
-				ShowWhenServerOff.Visibility          = Visibility.Visible;
-				ShowWhenServerOn.Visibility = Visibility.Collapsed;
+				ShowWhenServerOff.Visibility = Visibility.Visible;
+				ShowWhenServerOn.Visibility  = Visibility.Collapsed;
 			}
 		}
 
@@ -47,14 +47,14 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 				return;
 			}
 
-			ShowWhenServerOff.Visibility          = Visibility.Collapsed;
-			ShowWhenServerOn.Visibility = Visibility.Visible;
+			ShowWhenServerOff.Visibility = Visibility.Collapsed;
+			ShowWhenServerOn.Visibility  = Visibility.Visible;
 		}
 
 		private void OnProcessExit(Process process) {
 			Application.Current.Dispatcher.Invoke(() => {
-				ShowWhenServerOff.Visibility          = Visibility.Visible;
-				ShowWhenServerOn.Visibility = Visibility.Collapsed;
+				ShowWhenServerOff.Visibility = Visibility.Visible;
+				ShowWhenServerOn.Visibility  = Visibility.Collapsed;
 			});
 			if (process.ExitCode != 0) {
 				var err = process.StandardError.ReadToEnd();
@@ -65,9 +65,8 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 		}
 
 		private void StopCommandLineApiServerBtn_OnClick(object sender, RoutedEventArgs e) {
-			if (ShowConfirmationMBox("Are you sure that you want to stop the server?")) {
+			if (ShowConfirmationMBox("Are you sure that you want to stop the server?"))
 				ServerProcess.StopProcess();
-			}
 		}
 	}
 }

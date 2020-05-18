@@ -9,7 +9,7 @@ using static BlockChainBasedInvoiceManagementSystemUi.Utils;
 
 namespace BlockChainBasedInvoiceManagementSystemUi {
 	/// <summary>
-	/// Interaction logic for GenerateKeysWindow.xaml
+	///     Interaction logic for GenerateKeysWindow.xaml
 	/// </summary>
 	public partial class GenerateKeysWindow : Window {
 		public GenerateKeysWindow() {
@@ -19,24 +19,22 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 		private void PublicKeyFile_Browse_Btn_OnClick(object sender, RoutedEventArgs e) =>
 			PublicKeyFile_TextBlock.Text = ShowFileDialogBox<SaveFileDialog>(new[] {
 				("PEM Encryption key file", "*.pem"),
-				("All files", "*.*"),
+				("All files", "*.*")
 			}, this);
 
 		private void PrivateKeyFile_Browse_Btn_OnClick(object sender, RoutedEventArgs e) =>
 			PrivateKeyFile_TextBlock.Text = ShowFileDialogBox<SaveFileDialog>(new[] {
 				("PEM Encryption key file", "*.pem"),
-				("All files", "*.*"),
+				("All files", "*.*")
 			}, this);
 
 		private void GenKeysBtn_OnClick(object sender, RoutedEventArgs e) {
 			var errors = new List<string>();
-			if (!ValidatePath(PublicKeyFile_TextBlock.Text)) {
+			if (!ValidatePath(PublicKeyFile_TextBlock.Text))
 				errors.Add("The public key file location specified must be valid.");
-			}
 
-			if (!ValidatePath(PrivateKeyFile_TextBlock.Text)) {
+			if (!ValidatePath(PrivateKeyFile_TextBlock.Text))
 				errors.Add("The private key file location specified must be valid.");
-			}
 
 			if (errors.Count != 0) {
 				ShowErrorMBox(errors.Aggregate("There are some error(s):", (ret, err) => $"{ret}\n{err}"));
@@ -62,12 +60,12 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 					}"" --password ""{
 						SecureStringToString(password)
 					}""",
-				RedirectStandardError = true,
+				RedirectStandardError = true
 			};
 			password.Dispose();
 			Process process = Process.Start(processStartInfo);
 			if (process == null) {
-				ShowErrorMBox($"There was an error in starting the process.");
+				ShowErrorMBox("There was an error in starting the process.");
 			} else {
 				process.WaitForExit();
 				if (process.ExitCode != 0) {

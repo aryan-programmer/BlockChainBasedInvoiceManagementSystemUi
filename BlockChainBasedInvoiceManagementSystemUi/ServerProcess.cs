@@ -6,9 +6,9 @@ using static BlockChainBasedInvoiceManagementSystemUi.Utils;
 
 namespace BlockChainBasedInvoiceManagementSystemUi {
 	public static class ServerProcess {
-		public static bool IsStarted => process != null;
 
 		private static Process process;
+		public static  bool    IsStarted => process != null;
 
 		public static event Action<Process> Exit;
 
@@ -23,9 +23,8 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 											Settings.Default.P2PPort,
 											Settings.Default.Peers,
 											Settings.Default.PublicKeyFile,
-											Settings.Default.PrivateKeyFile)) {
+											Settings.Default.PrivateKeyFile))
 				return false;
-			}
 
 			SecureString password = PasswordPrompt("Please enter a password to encrypt the private key:");
 			if ((password == null) || (password.Length == 0)) {
@@ -57,7 +56,7 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 						SecureStringToString(password)
 					}""",
 				RedirectStandardError  = true,
-				RedirectStandardOutput = true,
+				RedirectStandardOutput = true
 			};
 			password.Dispose();
 			Process newProcess = Process.Start(processStartInfo);
