@@ -30,27 +30,24 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 
 		private void GenKeysBtn_OnClick(object sender, RoutedEventArgs e) {
 			var errors = new List<string>();
-			if (!IsFilePathValid(PublicKeyFile_TextBlock.Text)) {
+			if (!ValidatePath(PublicKeyFile_TextBlock.Text)) {
 				errors.Add("The public key file location specified must be valid.");
 			}
 
-			if (!IsFilePathValid(PrivateKeyFile_TextBlock.Text)) {
+			if (!ValidatePath(PrivateKeyFile_TextBlock.Text)) {
 				errors.Add("The private key file location specified must be valid.");
 			}
 
 			if (errors.Count != 0) {
-				ShowErrorMBox(
-							  errors.Aggregate("There are some error(s):", (ret, err) => $"{ret}\n{err}"),
-							  this
-							 );
+				ShowErrorMBox(errors.Aggregate("There are some error(s):", (ret, err) => $"{ret}\n{err}"));
 				return;
 			}
 
 			SecureString password = PasswordPrompt("Please enter a password to encrypt the private key:");
-			while ((password == null) || (password.Length == 0)) {
-				ShowErrorMBox("Please enter a password.", this);
+			if ((password == null) || (password.Length == 0)) {
+				ShowErrorMBox("Please enter a password.");
 				password?.Dispose();
-				password = PasswordPrompt("Please enter a password to encrypt the private key:");
+				return;
 			}
 
 			var processStartInfo = new ProcessStartInfo {
@@ -70,13 +67,13 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			password.Dispose();
 			Process process = Process.Start(processStartInfo);
 			if (process == null) {
-				ShowErrorMBox($"There was an error in starting the process.", this);
+				ShowErrorMBox($"There was an error in starting the process.");
 			} else {
 				process.WaitForExit();
 				if (process.ExitCode != 0) {
-					ShowErrorMBox($"There was an error:\n{process.StandardError.ReadToEnd()}", this);
+					ShowErrorMBox($"There was an error:\n{process.StandardError.ReadToEnd()}");
 				} else {
-					ShowInfoMBox("Success: Public private key pair created successfully.", this);
+					ShowInfoMBox("Success: Public private key pair created successfully.");
 					Close();
 				}
 			}

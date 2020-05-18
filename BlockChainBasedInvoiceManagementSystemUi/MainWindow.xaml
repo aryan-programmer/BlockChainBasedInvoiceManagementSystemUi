@@ -9,13 +9,19 @@
 	ResizeMode="NoResize"
 	Title="Block chain based invoice management system" Height="400" Width="575">
 	<Window.CommandBindings>
-		<CommandBinding Command="local:CustomCommands.Exit" Executed="ExitCmd_OnExecuted" />
-		<CommandBinding Command="local:CustomCommands.Options" Executed="OptionsCmd_OnExecuted" />
-		<CommandBinding Command="local:CustomCommands.GenerateKeys" Executed="GenerateKeysCmd_OnClick"
-		                CanExecute="GenerateKeysCmd_OnCanExecute" />
+		<CommandBinding
+			Command="local:CustomCommands.Exit"
+			Executed="ExitCmd_OnExecuted" />
+		<CommandBinding
+			Command="local:CustomCommands.Options"
+			Executed="OptionsCmd_OnExecuted" />
+		<CommandBinding
+			Command="local:CustomCommands.GenerateKeys"
+			Executed="GenerateKeysCmd_OnClick"
+			CanExecute="GenerateKeysCmd_OnCanExecute" />
 	</Window.CommandBindings>
 	<Grid>
-		<Menu VerticalAlignment="Top" FontSize="14">
+		<Menu FontFamily="Consolas" VerticalAlignment="Top" FontSize="16" Height="21">
 			<MenuItem Header="File">
 				<MenuItem Command="local:CustomCommands.GenerateKeys" />
 				<Separator />
@@ -24,5 +30,30 @@
 				<MenuItem Command="local:CustomCommands.Exit" />
 			</MenuItem>
 		</Menu>
+		<Grid Margin="0,21,0,0">
+			<Button
+				x:Name="ShowWhenServerOff"
+				FontFamily="Consolas"
+				Content="Start Server"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				FontSize="30"
+				Visibility="Visible"
+				Click="StartCommandLineApiBtn_OnClick"
+				Width="247.4"
+				Margin="0,0,0,50" />
+			<Button
+				x:Name="ShowWhenServerOn"
+				FontFamily="Consolas"
+				Content="Stop Server!"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				FontSize="30"
+				Visibility="Visible"
+				Background="OrangeRed"
+				Click="StopCommandLineApiServerBtn_OnClick"
+				Width="247.4"
+				Margin="0,0,0,50" />
+		</Grid>
 	</Grid>
 </Window>

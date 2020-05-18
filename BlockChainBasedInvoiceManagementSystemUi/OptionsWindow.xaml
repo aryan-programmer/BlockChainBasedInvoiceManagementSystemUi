@@ -8,7 +8,7 @@
 	mc:Ignorable="d"
 	Title="Options"
 	MinWidth="800"
-	MinHeight="590">
+	MinHeight="575" Height="575" Width="800">
 	<Window.Resources>
 		<local:OptionsDataSource x:Key="Options" />
 
@@ -42,20 +42,21 @@
 			<RowDefinition />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="160" />
+			<ColumnDefinition Width="195" />
 			<ColumnDefinition />
 		</Grid.ColumnDefinitions>
 		<!--#region Command line API -->
 		<TextBlock
 			Grid.Row="0"
 			Grid.Column="0"
+			FontFamily="Consolas"
 			Height="25"
 			Margin="0,10,0,0"
 			TextWrapping="Wrap"
 			VerticalAlignment="Top"
 			Text="Command line API file"
 			FontSize="16"
-			TextAlignment="Right" Width="156.794" HorizontalAlignment="Right" />
+			TextAlignment="Right" HorizontalAlignment="Right" />
 		<StackPanel
 			Grid.Row="0"
 			Grid.Column="1"
@@ -88,20 +89,21 @@
 		<TextBlock
 			Grid.Row="1"
 			Grid.Column="0"
+			FontFamily="Consolas"
 			HorizontalAlignment="Right"
 			Height="25"
 			Margin="0,10,0,0"
 			Text="API Port"
 			VerticalAlignment="Top"
 			FontSize="16"
-			TextAlignment="Right" Width="56.647" />
+			TextAlignment="Right" />
 		<TextBox
 			Grid.Row="1"
 			Grid.Column="1"
 			x:Name="ApiPortTextBox"
 			HorizontalAlignment="Left"
 			Height="25"
-			Margin="10,10,0,10"
+			Margin="10"
 			TextWrapping="Wrap"
 			VerticalAlignment="Top"
 			Width="80"
@@ -123,20 +125,21 @@
 		<TextBlock
 			Grid.Row="2"
 			Grid.Column="0"
+			FontFamily="Consolas"
 			HorizontalAlignment="Right"
 			Height="25"
 			Margin="0,10,0,0"
 			VerticalAlignment="Top"
 			Text="P2P Port"
 			FontSize="16"
-			TextAlignment="Right" Width="59.657" />
+			TextAlignment="Right" />
 		<TextBox
 			Grid.Row="2"
 			Grid.Column="1"
 			x:Name="P2PPortTextBox"
 			HorizontalAlignment="Left"
 			Height="25"
-			Margin="10,10,0,10"
+			Margin="10"
 			TextWrapping="Wrap"
 			VerticalAlignment="Top"
 			Width="80"
@@ -160,13 +163,14 @@
 		<TextBlock
 			Grid.Row="3"
 			Grid.Column="0"
+			FontFamily="Consolas"
 			HorizontalAlignment="Right"
 			Height="25"
 			Margin="0,10,0,0"
 			VerticalAlignment="Top"
 			Text="Peers"
 			FontSize="16"
-			TextAlignment="Right" Width="37.453" />
+			TextAlignment="Right" />
 		<StackPanel
 			Grid.Row="3"
 			Grid.Column="1"
@@ -205,6 +209,7 @@
 		<TextBlock
 			Grid.Row="4"
 			Grid.Column="0"
+			FontFamily="Consolas"
 			HorizontalAlignment="Right"
 			Height="25"
 			Margin="0,10,0,0"
@@ -212,7 +217,7 @@
 			VerticalAlignment="Top"
 			Text="Public key file"
 			FontSize="16"
-			TextAlignment="Right" Width="96.507" />
+			TextAlignment="Right" />
 		<StackPanel
 			Grid.Row="4"
 			Grid.Column="1"
@@ -244,6 +249,7 @@
 		<!--#endregion-->
 		<!--#region Private key file -->
 		<TextBlock
+			FontFamily="Consolas"
 			Grid.Row="5"
 			Grid.Column="0"
 			HorizontalAlignment="Right"
@@ -253,7 +259,7 @@
 			VerticalAlignment="Top"
 			Text="Private key file"
 			FontSize="16"
-			TextAlignment="Right" Width="101.94" />
+			TextAlignment="Right" />
 		<StackPanel
 			Grid.Row="5"
 			Grid.Column="1"
