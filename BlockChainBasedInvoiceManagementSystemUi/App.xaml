@@ -17,5 +17,21 @@
 				<Setter Property="FontSize" Value="16"/>
 			</Style.Setters>
 		</Style>
+		<ControlTemplate x:Key="ValidationTemplate">
+			<DockPanel>
+				<TextBlock Foreground="Red" FontSize="20">!</TextBlock>
+				<AdornedElementPlaceholder />
+			</DockPanel>
+		</ControlTemplate>
+		<Style TargetType="{x:Type TextBox}" x:Key="TextBoxValidationStyle">
+			<Style.Triggers>
+				<Trigger Property="Validation.HasError" Value="True">
+					<Setter
+						Property="ToolTip"
+						Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+						Path=(Validation.Errors)[0].ErrorContent}" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
 	</Application.Resources>
 </Application>

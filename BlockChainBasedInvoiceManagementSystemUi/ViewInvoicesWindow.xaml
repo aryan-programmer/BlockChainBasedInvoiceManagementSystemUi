@@ -6,7 +6,10 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:local="clr-namespace:BlockChainBasedInvoiceManagementSystemUi"
 	mc:Ignorable="d"
-	Height="450" Width="905">
+	MinHeight="350"
+	Height="450"
+	MinWidth="905"
+	Width="905">
 	<Grid x:Name="Grid">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="350" />
@@ -148,7 +151,7 @@
 					<Style TargetType="{x:Type TextBlock}">
 						<Style.Setters>
 							<Setter Property="FontFamily" Value="Consolas" />
-							<Setter Property="FontSize" Value="18" />
+							<Setter Property="FontSize" Value="16" />
 						</Style.Setters>
 					</Style>
 				</Grid.Resources>
@@ -268,6 +271,7 @@
 				HorizontalScrollBarVisibility="Auto"
 				VerticalScrollBarVisibility="Hidden"
 				HeadersVisibility="Column"
+				IsReadOnly="True"
 				ScrollViewer.CanContentScroll="True">
 				<DataGrid.Columns>
 					<DataGridTextColumn Width="87" Header="Name" Binding="{Binding name}" />

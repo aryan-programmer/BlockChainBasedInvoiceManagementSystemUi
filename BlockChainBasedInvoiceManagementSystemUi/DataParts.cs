@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace BlockChainBasedInvoiceManagementSystemUi {
 	// ReSharper disable InconsistentNaming
 #pragma warning disable IDE1006 // Naming Styles
-
-	#region Received JSON Data Classes
 
 	public class Purchaser {
 		public string phoneNumber { get; set; }
@@ -13,9 +13,11 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 		public bool   isVendor    { get; set; }
 	}
 
+	#region Received JSON Data Classes
+
 	public class Product {
-		public string name          { get; set; }
-		public string quantity      { get; set; }
+		public string name          { get; set; } = "";
+		public string quantity      { get; set; } = "";
 		public float  cost          { get; set; }
 		public float  taxPercentage { get; set; }
 		public float  tax           { get; set; }
@@ -23,7 +25,7 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 	}
 
 	public class Inv {
-		public string        invoiceNumber { get; set; }
+		public string invoiceNumber { get; set; } = "";
 		public List<Product> products      { get; set; }
 		public float         totalCost     { get; set; }
 		public Purchaser     purchaser     { get; set; }
@@ -46,6 +48,23 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 	}
 
 	#endregion
+
+	public class InpProduct {
+		public string name          { get; set; }
+		public string quantity      { get; set; }
+		public float  cost          { get; set; }
+		public float  taxPercentage { get; set; }
+	}
+
+	public class InpInv {
+		public string           invoiceNumber { get; set; }
+		public List<InpProduct> products      { get; set; }
+		public Purchaser        purchaser     { get; set; }
+	}
+
+	public class AddInvoice_SendData {
+		public InpInv data { get; set; }
+	}
 
 	#region Parsed Data Classes designed to be easy to use in XAML
 

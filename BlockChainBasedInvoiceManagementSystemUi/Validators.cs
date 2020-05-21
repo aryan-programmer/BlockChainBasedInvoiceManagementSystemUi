@@ -30,4 +30,18 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			return ValidationResult.ValidResult;
 		}
 	}
+
+	public class PhoneNumberValidator : ValidationRule {
+		public override ValidationResult Validate(object value, CultureInfo cultureInfo) {
+			if (!(value is string))
+				return new ValidationResult(false,
+											"Value must a valid phone number, not null.");
+
+			if (!ValidatePhoneNumber((string) value))
+				return new ValidationResult(false,
+											$"Value must a valid phone number, not {value}.");
+
+			return ValidationResult.ValidResult;
+		}
+	}
 }

@@ -64,6 +64,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataGridSpecializedNumericColumn.cs" />
+    <Compile Include="NewInvoiceWindow.xaml.cs">
+      <DependentUpon>NewInvoiceWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewInvoicesWindow.xaml.cs">
       <DependentUpon>ViewInvoicesWindow.xaml</DependentUpon>
     </Compile>
@@ -93,6 +97,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NewInvoiceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NotificationDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -111,7 +119,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OptionsDataSource.cs" />
     <Compile Include="OptionsWindow.xaml.cs">
       <DependentUpon>OptionsWindow.xaml</DependentUpon>
     </Compile>

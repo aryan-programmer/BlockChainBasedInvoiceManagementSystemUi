@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using BlockChainBasedInvoiceManagementSystemUi.Properties;
 using Microsoft.Win32;
 using static BlockChainBasedInvoiceManagementSystemUi.Utils;
@@ -11,10 +10,11 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 	public partial class OptionsWindow : Window {
 		public OptionsWindow() {
 			InitializeComponent();
+			Grid.DataContext = this;
 			CommandLineApiFile_TextBlock.Text = Settings.Default.CommandLineApiFile;
-			ApiPortTextBox.Text               = Settings.Default.ApiPort.ToString();
-			P2PPortTextBox.Text               = Settings.Default.P2PPort.ToString();
-			PeersTextBox.Text                 = Settings.Default.Peers;
+			ApiPort                           = Settings.Default.ApiPort;
+			P2PPort                           = Settings.Default.P2PPort;
+			Peers                             = Settings.Default.Peers;
 			PublicKeyFile_TextBlock.Text      = Settings.Default.PublicKeyFile;
 			PrivateKeyFile_TextBlock.Text     = Settings.Default.PrivateKeyFile;
 		}
@@ -44,7 +44,7 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			var peers              = PeersTextBox.Text;
 			var publicKeyFile      = PublicKeyFile_TextBlock.Text;
 			var privateKeyFile     = PrivateKeyFile_TextBlock.Text;
-			if (ValidateSettings_ShowErrors(
+			if (!ValidateSettings_ShowErrors(
 											commandLineApiFile,
 											apiPort,
 											p2PPort,
@@ -54,8 +54,8 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			) return;
 
 			Settings.Default["CommandLineApiFile"] = commandLineApiFile;
-			Settings.Default["ApiPort"]            = Convert.ToUInt32(apiPort);
-			Settings.Default["P2PPort"]            = Convert.ToUInt32(p2PPort);
+			Settings.Default["ApiPort"]            = ApiPort;
+			Settings.Default["P2PPort"]            = P2PPort;
 			Settings.Default["Peers"]              = peers;
 			Settings.Default["PublicKeyFile"]      = publicKeyFile;
 			Settings.Default["PrivateKeyFile"]     = privateKeyFile;
@@ -64,5 +64,9 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 		}
 
 		private void CancelBtn_OnClick(object sender, RoutedEventArgs e) => Close();
+
+		public uint ApiPort { get; set; }
+		public uint P2PPort { get; set; }
+		public string Peers { get; set; }
 	}
 }

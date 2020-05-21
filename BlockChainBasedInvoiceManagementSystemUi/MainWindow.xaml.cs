@@ -67,62 +67,100 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 				ServerProcess.I.StopProcess();
 		}
 
-		private void MyInvoicesMenu_OnClick(object sender, RoutedEventArgs e) {
-			RestClient client =
-				new RestClient(
-							   $"http://localhost:{Settings.Default.ApiPort}/blocks"
-							  ) {
+		private void AddNewInvoiceMenu_OnClick(object sender, RoutedEventArgs e) {
+			try {
+				var window = new NewInvoiceWindow();
+				if(window.ShowDialog() != true)
+					return;
+				InpInv inpInv = window.GetInpInv();
+				var invStr = new JsonSerializer().Serialize(new AddInvoice_SendData {data = inpInv});
+				var client = new RestClient($"http://localhost:{Settings.Default.ApiPort}/addInvoice") {
 					Timeout = -1
-				}.UseJson();
-			var           request  = new RestRequest(Method.GET);
-			IRestResponse response = client.Execute(request);
-			var           blocks   = new JsonSerializer().Deserialize<List<Block>>(response);
-			List<UiInvoice> invoices =
-				(from block in blocks
-				 from invoice in block.data
-				 where invoice.publicKey == publicKey
-				 let inv = new UiInvoice(invoice)
-				 orderby inv.timestamp descending
-				 select inv)
-			   .ToList();
-			if (invoices.Count == 0) {
-				ShowWarningMBox(@"You don't have any mined invoices.
+				};
+				var request = new RestRequest(Method.POST);
+				request.AddHeader("Content-Type", "application/json");
+				request.AddParameter("application/json", invStr, ParameterType.RequestBody);
+				IRestResponse response = client.Execute(request);
+				if(!string.IsNullOrEmpty(response.ErrorMessage)) {
+					ShowErrorMBox(@"There was an error in adding the new invoice.");
+				}
+			} catch(Exception) {
+				ShowErrorMBox(@"There was an error in adding the new invoice.");
+			}
+		}
+
+		private void MyInvoicesMenu_OnClick(object sender, RoutedEventArgs e) {
+			try {
+				RestClient client =
+						new RestClient(
+									   $"http://localhost:{Settings.Default.ApiPort}/blocks"
+									  ) {
+							Timeout = -1
+						}.UseJson();
+				var request = new RestRequest(Method.GET);
+				IRestResponse response = client.Execute(request);
+				if(!string.IsNullOrEmpty(response.ErrorMessage)) {
+					ShowErrorMBox(@"There was an error in getting the mined invoices.");
+					return;
+				}
+				var blocks = new JsonSerializer().Deserialize<List<Block>>(response);
+				List<UiInvoice> invoices =
+					(from block in blocks
+					 from invoice in block.data
+					 where invoice.publicKey == publicKey
+					 let inv = new UiInvoice(invoice)
+					 orderby inv.timestamp descending
+					 select inv)
+				   .ToList();
+				if(invoices.Count == 0) {
+					ShowWarningMBox(@"You don't have any mined invoices.
 Please add an invoice, mine it,
 or wait for someone else to mine it.
 Then open this dialog.");
-			} else {
-				var window = new ViewInvoicesWindow(invoices) {
-					Title = "My mined invoices"
-				};
-				window.ShowDialog();
+				} else {
+					var window = new ViewInvoicesWindow(invoices) {
+						Title = "My mined invoices"
+					};
+					window.ShowDialog();
+				}
+			} catch(Exception) {
+				ShowErrorMBox(@"There was an error in parsing/showing the mined invoices");
 			}
 		}
 
 		private void MyPendingInvoices_OnClick(object sender, RoutedEventArgs e) {
-			RestClient client =
-				new RestClient(
-							   $"http://localhost:{Settings.Default.ApiPort}/pendingInvoices"
-							  ) {
-					Timeout = -1
-				}.UseJson();
-			var           request   = new RestRequest(Method.GET);
-			IRestResponse response  = client.Execute(request);
-			List<UiInvoice> invoices =
-				(from invoice in new JsonSerializer().Deserialize<List<Invoice>>(response)
-				 where invoice.publicKey == publicKey
-				 let inv = new UiInvoice(invoice)
-				 orderby inv.timestamp descending
-				 select inv)
-			   .ToList();
-			if (invoices.Count == 0) {
-				ShowWarningMBox(@"You don't have any pending invoices.
+			try {
+				RestClient client =
+						new RestClient(
+									   $"http://localhost:{Settings.Default.ApiPort}/pendingInvoices"
+									  ) {
+							Timeout = -1
+						}.UseJson();
+				var request = new RestRequest(Method.GET);
+				IRestResponse response = client.Execute(request);
+				if(!string.IsNullOrEmpty(response.ErrorMessage)) {
+					ShowErrorMBox(@"There was an error in getting the pending invoices.");
+					return;
+				}
+				List<UiInvoice> invoices =
+					(from invoice in new JsonSerializer().Deserialize<List<Invoice>>(response)
+					 where invoice.publicKey == publicKey
+					 let inv = new UiInvoice(invoice)
+					 orderby inv.timestamp descending
+					 select inv)
+				   .ToList();
+				if(invoices.Count == 0) {
+					ShowWarningMBox(@"You don't have any pending invoices.
 This may mean that all your invoices are already
 been mined or that you didn't add any invoices at all.");
-			} else {
-				var window = new ViewInvoicesWindow(invoices) {
-					Title = "My pending invoices"
-				};
-				window.ShowDialog();
+				} else {
+					var window = new ViewInvoicesWindow(invoices) {
+						Title = "My pending invoices"
+					};
+					window.ShowDialog();
+				}
+			} catch(Exception) {
+				ShowErrorMBox(@"There was an error in parsing/showing the pending invoices");
 			}
 		}
 	}

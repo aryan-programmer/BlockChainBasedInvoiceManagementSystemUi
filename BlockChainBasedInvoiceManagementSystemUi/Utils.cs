@@ -92,11 +92,48 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 		}
 
 		public static bool ValidatePort(string port) =>
-			new Regex("[1-9][0-9]{3,}").IsMatch(port);
+			new Regex(@"^[1-9][0-9]{3,}$").IsMatch(port);
 
 		public static bool ValidatePeers(string peers) =>
 			(peers == "") ||
 			new Regex(@"^([\w-]+\.)+[\w-]+:[1-9][0-9]{3,}(,([\w-]+\.)+[\w-]+:[1-9][0-9]{3,})*$").IsMatch(peers);
+
+		public static bool ValidatePhoneNumber(string phoneNumber) =>
+			new Regex(@"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$").IsMatch(phoneNumber);
+
+		public static bool ValidateInpInv_ShowError(
+			string           invoiceNumber,
+			string           purchaserName,
+			string           phoneNumber,
+			List<InpProduct> products) {
+			var errors = new List<string>();
+
+			if (invoiceNumber == "")
+				errors.Add("Invoice number must not be empty.");
+
+			if (purchaserName == "")
+				errors.Add("The purchaser's name must not be empty.");
+
+			if (!ValidatePhoneNumber(phoneNumber))
+				errors.Add("Invalid phone number.");
+
+			if (products.Count == 0)
+				errors.Add("The number of products must be at least be 1.");
+			else {
+				if (products.Any(product => string.IsNullOrEmpty(product.name))) 
+					errors.Add("A product's name can't be empty.");
+
+				if (products.Any(product => string.IsNullOrEmpty(product.quantity))) 
+					errors.Add("A product's quantity can't be empty.");
+			}
+
+			if (errors.Count != 0) {
+				ShowErrorMBox(errors.Aggregate("There are some error(s):", (ret, err) => $"{ret}\n{err}"));
+				return false;
+			}
+
+			return true;
+		}
 
 		public static bool ValidateSettings_ShowErrors(
 			string commandLineApiFile,
@@ -173,10 +210,10 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 
 			if (errors.Count != 0) {
 				ShowErrorMBox(errors.Aggregate("There are some error(s):", (ret, err) => $"{ret}\n{err}"));
-				return true;
+				return false;
 			}
 
-			return false;
+			return true;
 		}
 	}
 }

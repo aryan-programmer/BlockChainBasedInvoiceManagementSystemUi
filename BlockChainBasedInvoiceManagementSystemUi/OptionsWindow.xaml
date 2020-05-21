@@ -9,28 +9,7 @@
 	Title="Options"
 	MinWidth="800"
 	MinHeight="575" Height="575" Width="800">
-	<Window.Resources>
-		<local:OptionsDataSource x:Key="Options" />
-
-		<ControlTemplate x:Key="ValidationTemplate">
-			<DockPanel>
-				<TextBlock Foreground="Red" FontSize="20">!</TextBlock>
-				<AdornedElementPlaceholder />
-			</DockPanel>
-		</ControlTemplate>
-
-		<Style TargetType="{x:Type TextBox}">
-			<Style.Triggers>
-				<Trigger Property="Validation.HasError" Value="true">
-					<Setter
-						Property="ToolTip"
-						Value="{Binding RelativeSource={x:Static RelativeSource.Self},
-						Path=(Validation.Errors)[0].ErrorContent}" />
-				</Trigger>
-			</Style.Triggers>
-		</Style>
-	</Window.Resources>
-	<Grid>
+	<Grid x:Name="Grid">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
@@ -109,8 +88,7 @@
 			Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
 			<TextBox.Text>
 				<Binding
-					Path="ApiPort"
-					Source="{StaticResource Options}"
+					Path="(local:OptionsWindow.ApiPort)"
 					UpdateSourceTrigger="PropertyChanged">
 					<Binding.ValidationRules>
 						<local:PortInputValidator />
@@ -144,10 +122,8 @@
 			Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
 			<TextBox.Text>
 				<Binding
-					Path="P2PPort"
-					Source="{StaticResource Options}"
-					UpdateSourceTrigger="PropertyChanged"
-					Mode="TwoWay">
+					Path="(local:OptionsWindow.P2PPort)"
+					UpdateSourceTrigger="PropertyChanged">
 					<Binding.ValidationRules>
 						<local:PortInputValidator />
 					</Binding.ValidationRules>
@@ -182,10 +158,8 @@
 				Margin="0">
 				<TextBox.Text>
 					<Binding
-						Path="Peers"
-						Source="{StaticResource Options}"
-						UpdateSourceTrigger="PropertyChanged"
-						Mode="TwoWay">
+						Path="(local:OptionsWindow.Peers)"
+						UpdateSourceTrigger="PropertyChanged">
 						<Binding.ValidationRules>
 							<local:PeersInputValidator />
 						</Binding.ValidationRules>
