@@ -1,0 +1,283 @@
+﻿<Window
+	x:Class="BlockChainBasedInvoiceManagementSystemUi.ViewInvoicesWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:local="clr-namespace:BlockChainBasedInvoiceManagementSystemUi"
+	mc:Ignorable="d"
+	Height="450" Width="905">
+	<Grid x:Name="Grid">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="350" />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<ListBox
+			Grid.Column="0"
+			ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+			ScrollViewer.VerticalScrollBarVisibility="Visible"
+			SelectedIndex="0"
+			SelectedItem="{Binding (local:ViewInvoicesWindow.Invoice), Mode=TwoWay}"
+			ItemsSource="{Binding (local:ViewInvoicesWindow.Invoices)}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<StackPanel Width="310">
+						<TextBlock
+							FontSize="14"
+							HorizontalAlignment="Center">
+							<Run Text="{Binding invoiceNumber}" />
+						</TextBlock>
+						<Grid HorizontalAlignment="Center">
+							<Grid.Resources>
+								<Style TargetType="{x:Type TextBlock}">
+									<Style.Setters>
+										<Setter Property="FontFamily" Value="Consolas" />
+										<Setter Property="FontSize" Value="12" />
+									</Style.Setters>
+								</Style>
+							</Grid.Resources>
+							<Grid.RowDefinitions>
+								<RowDefinition />
+								<RowDefinition />
+								<RowDefinition />
+								<RowDefinition />
+								<RowDefinition />
+								<RowDefinition />
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" />
+								<ColumnDefinition Width="Auto" />
+							</Grid.ColumnDefinitions>
+							<TextBlock
+								Grid.Row="0"
+								Grid.Column="0"
+								Margin="0,0,3,0"
+								HorizontalAlignment="Right">
+								Date:
+							</TextBlock>
+							<TextBlock
+								Grid.Row="0"
+								Grid.Column="1"
+								HorizontalAlignment="Left">
+								<Run Text="{Binding date}" />
+							</TextBlock>
+							<TextBlock
+								Grid.Row="1"
+								Grid.Column="0"
+								Margin="0,0,3,0"
+								HorizontalAlignment="Right">
+								Time:
+							</TextBlock>
+							<TextBlock
+								Grid.Row="1"
+								Grid.Column="1"
+								HorizontalAlignment="Left">
+								<Run Text="{Binding time}" />
+							</TextBlock>
+							<TextBlock
+								Grid.Row="2"
+								Grid.Column="0"
+								Margin="0,0,3,0"
+								HorizontalAlignment="Right">
+								Cost:
+							</TextBlock>
+							<TextBlock
+								Grid.Row="2"
+								Grid.Column="1"
+								HorizontalAlignment="Left">
+								₹ <Run Text="{Binding totalCost}" />
+							</TextBlock>
+							<TextBlock
+								Grid.Row="3"
+								Grid.Column="0"
+								Margin="0,0,3,0"
+								HorizontalAlignment="Right">
+								Buyer's name:
+							</TextBlock>
+							<TextBlock
+								Grid.Row="3"
+								Grid.Column="1"
+								HorizontalAlignment="Left">
+								<Run Text="{Binding purchaserName}" />
+							</TextBlock>
+							<TextBlock
+								Grid.Row="4"
+								Grid.Column="0"
+								Margin="0,0,3,0"
+								HorizontalAlignment="Right">
+								Buyer's phone number:
+							</TextBlock>
+							<TextBlock
+								Grid.Row="4"
+								Grid.Column="1"
+								HorizontalAlignment="Left">
+								<Run Text="{Binding purchaserPhoneNumber}" />
+							</TextBlock>
+							<TextBlock
+								Grid.Row="5"
+								Grid.Column="0"
+								Margin="0,0,3,0"
+								HorizontalAlignment="Right">
+								Is the buyer a vendor:
+							</TextBlock>
+							<local:IfElse
+								Grid.Row="5"
+								Grid.Column="1"
+								HorizontalAlignment="Left"
+								V="{Binding isPurchaserVendor}">
+								<local:IfElse.Then>
+									<TextBlock Text="Yes" />
+								</local:IfElse.Then>
+								<local:IfElse.Else>
+									<TextBlock Text="No" />
+								</local:IfElse.Else>
+							</local:IfElse>
+						</Grid>
+					</StackPanel>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<StackPanel
+			Grid.Column="1"
+			Margin="0"
+			DataContext="{Binding (local:ViewInvoicesWindow.Invoice)}"
+			CanVerticallyScroll="True">
+			<TextBlock TextWrapping="Wrap" Text="{Binding invoiceNumber}" FontSize="24" TextAlignment="Center" />
+			<Grid HorizontalAlignment="Center" Margin="0,5,0,0">
+				<Grid.Resources>
+					<Style TargetType="{x:Type TextBlock}">
+						<Style.Setters>
+							<Setter Property="FontFamily" Value="Consolas" />
+							<Setter Property="FontSize" Value="18" />
+						</Style.Setters>
+					</Style>
+				</Grid.Resources>
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition />
+					<RowDefinition />
+					<RowDefinition />
+					<RowDefinition />
+					<RowDefinition />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+				<TextBlock
+					Grid.Row="0"
+					Grid.Column="0"
+					Margin="0,0,3,0"
+					HorizontalAlignment="Right">
+					Date:
+				</TextBlock>
+				<TextBlock
+					Grid.Row="0"
+					Grid.Column="1"
+					HorizontalAlignment="Left">
+					<Run Text="{Binding date}" />
+				</TextBlock>
+				<TextBlock
+					Grid.Row="1"
+					Grid.Column="0"
+					Margin="0,0,3,0"
+					HorizontalAlignment="Right">
+					Time:
+				</TextBlock>
+				<TextBlock
+					Grid.Row="1"
+					Grid.Column="1"
+					HorizontalAlignment="Left">
+					<Run Text="{Binding time}" />
+				</TextBlock>
+				<TextBlock
+					Grid.Row="2"
+					Grid.Column="0"
+					Margin="0,0,3,0"
+					HorizontalAlignment="Right">
+					Cost:
+				</TextBlock>
+				<TextBlock
+					Grid.Row="2"
+					Grid.Column="1"
+					HorizontalAlignment="Left">
+					₹ <Run Text="{Binding totalCost}" />
+				</TextBlock>
+				<TextBlock
+					Grid.Row="3"
+					Grid.Column="0"
+					Margin="0,0,3,0"
+					HorizontalAlignment="Right">
+					Purchaser's name:
+				</TextBlock>
+				<TextBlock
+					Grid.Row="3"
+					Grid.Column="1"
+					HorizontalAlignment="Left">
+					<Run Text="{Binding purchaserName}" />
+				</TextBlock>
+				<TextBlock
+					Grid.Row="4"
+					Grid.Column="0"
+					Margin="0,0,3,0"
+					HorizontalAlignment="Right">
+					Purchaser's phone number:
+				</TextBlock>
+				<TextBlock
+					Grid.Row="4"
+					Grid.Column="1"
+					HorizontalAlignment="Left">
+					<Run Text="{Binding purchaserPhoneNumber}" />
+				</TextBlock>
+				<TextBlock
+					Grid.Row="5"
+					Grid.Column="0"
+					Margin="0,0,3,0"
+					HorizontalAlignment="Right">
+					Is purchaser a vendor:
+				</TextBlock>
+				<local:IfElse
+					Grid.Row="5"
+					Grid.Column="1"
+					HorizontalAlignment="Left"
+					V="{Binding isPurchaserVendor}">
+					<local:IfElse.Then>
+						<TextBlock Text="Yes" />
+					</local:IfElse.Then>
+					<local:IfElse.Else>
+						<TextBlock Text="No" />
+					</local:IfElse.Else>
+				</local:IfElse>
+			</Grid>
+			<DataGrid
+				Background="{x:Null}"
+				BorderBrush="{x:Null}"
+				CanUserSortColumns="True"
+				CanUserResizeColumns="True"
+				CanUserReorderColumns="True"
+				CanUserAddRows="False"
+				CanUserDeleteRows="False"
+				CanUserResizeRows="False"
+				ItemsSource="{Binding (local:UiInvoice.products)}"
+				AutoGenerateColumns="False"
+				Foreground="Black"
+				AlternatingRowBackground="PowderBlue"
+				FontFamily="Consolas"
+				FontSize="15"
+				GridLinesVisibility="All"
+				HorizontalScrollBarVisibility="Auto"
+				VerticalScrollBarVisibility="Hidden"
+				HeadersVisibility="Column"
+				ScrollViewer.CanContentScroll="True">
+				<DataGrid.Columns>
+					<DataGridTextColumn Width="87" Header="Name" Binding="{Binding name}" />
+					<DataGridTextColumn Width="87" Header="Quantity" Binding="{Binding quantity}" />
+					<DataGridTextColumn Width="87" Header="Cost (₹)" Binding="{Binding cost}" />
+					<DataGridTextColumn Width="87" Header="Tax (%)" Binding="{Binding taxPercentage}" />
+					<DataGridTextColumn Width="87" Header="Tax (₹)" Binding="{Binding tax}" />
+					<DataGridTextColumn Width="87" Header="Total (₹)" Binding="{Binding totalCost}" />
+				</DataGrid.Columns>
+			</DataGrid>
+		</StackPanel>
+	</Grid>
+</Window>

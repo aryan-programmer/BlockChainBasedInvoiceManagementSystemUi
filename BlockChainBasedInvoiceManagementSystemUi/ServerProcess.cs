@@ -1,18 +1,42 @@
-﻿using System;
+﻿using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
+using System.Runtime.CompilerServices;
 using System.Security;
 using BlockChainBasedInvoiceManagementSystemUi.Properties;
 using static BlockChainBasedInvoiceManagementSystemUi.Utils;
 
 namespace BlockChainBasedInvoiceManagementSystemUi {
-	public static class ServerProcess {
+	public delegate void ServerProcessExited(int errorCode, StreamReader stdout, StreamReader stderr);
 
-		private static Process process;
-		public static  bool    IsStarted => process != null;
+	public class ServerProcess : INotifyPropertyChanged {
+		private bool isStarted /*
+				= true
+			//*///
+			;
 
-		public static event Action<Process> Exit;
+		private Process process;
 
-		public static bool StartProcess_ShowErrors() {
+		private ServerProcess() { }
+
+		public static ServerProcess I { get; } = new ServerProcess();
+
+		public bool IsStarted {
+			get => isStarted;
+			private set {
+				isStarted = value;
+				OnPropertyChanged();
+			}
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		private void OnPropertyChanged([CallerMemberName] string name = null) =>
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+		public event ServerProcessExited Exit;
+
+		public bool StartProcess_ShowErrors() {
 			if (process != null) {
 				ShowErrorMBox("Error: Server process has already been started");
 				return false;
@@ -65,24 +89,26 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 				return false;
 			}
 
-			newProcess.EnableRaisingEvents =  true;
-			newProcess.Exited              += (sender, args) => Exit?.Invoke(newProcess);
+			newProcess.EnableRaisingEvents = true;
+			newProcess.Exited += (sender, args) => {
+				Exit?.Invoke(newProcess.ExitCode, newProcess.StandardOutput, newProcess.StandardError);
+				process.Close();
+				process   = null;
+				IsStarted = false;
+			};
 
-			process = newProcess;
+			process   = newProcess;
+			IsStarted = true;
 			return true;
 		}
 
-		public static void StopProcess() {
+		public void StopProcess() {
 			if (process == null) return;
 			try {
 				process.Kill();
 			} catch {
 				// ignored
 			}
-
-			Exit?.Invoke(process);
-			process.Close();
-			process = null;
 		}
 	}
 }

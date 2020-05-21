@@ -23,13 +23,11 @@
 		<TextBlock
 			Grid.Row="0"
 			Grid.Column="0"
-			FontFamily="Consolas"
 			Height="25"
 			Margin="0,10,0,0"
 			TextWrapping="Wrap"
 			VerticalAlignment="Top"
 			Text="Public key file"
-			FontSize="16"
 			TextAlignment="Right" HorizontalAlignment="Right" Width="131.95" />
 		<StackPanel
 			Grid.Row="0"
@@ -40,10 +38,8 @@
 			<Button
 				x:Name="PublicKeyFile_Browse_Btn"
 				Height="25"
-				FontSize="16"
 				VerticalAlignment="Top"
 				Margin="0"
-				FontFamily="Consolas"
 				Width="75"
 				HorizontalAlignment="Left"
 				Click="PublicKeyFile_Browse_Btn_OnClick">
@@ -56,13 +52,11 @@
 				IsReadOnly="True"
 				FontSize="14"
 				Margin="0,5,0,0"
-				FontFamily="Consolas"
 				TextWrapping="Wrap" />
 		</StackPanel>
 		<!--#endregion-->
 		<!--#region Private key file -->
 		<TextBlock
-			FontFamily="Consolas"
 			Grid.Row="1"
 			Grid.Column="0"
 			HorizontalAlignment="Right"
@@ -71,7 +65,6 @@
 			TextWrapping="Wrap"
 			VerticalAlignment="Top"
 			Text="Private key file"
-			FontSize="16"
 			TextAlignment="Right" Width="140.747" />
 		<StackPanel
 			Grid.Row="1"
@@ -81,10 +74,8 @@
 			<Button
 				x:Name="PrivateKeyFile_Browse_Btn"
 				Height="25"
-				FontSize="16"
 				VerticalAlignment="Top"
 				Margin="0"
-				FontFamily="Consolas"
 				Width="75"
 				HorizontalAlignment="Left"
 				Click="PrivateKeyFile_Browse_Btn_OnClick">
@@ -97,7 +88,6 @@
 				IsReadOnly="True"
 				FontSize="14"
 				Margin="0,5,0,0"
-				FontFamily="Consolas"
 				TextWrapping="Wrap" />
 		</StackPanel>
 		<!--#endregion-->
@@ -114,8 +104,6 @@
 				Height="25"
 				Width="125"
 				HorizontalAlignment="Left"
-				FontFamily="Consolas"
-				FontSize="16"
 				VerticalAlignment="Top"
 				Click="GenKeysBtn_OnClick" />
 			<Button
@@ -125,8 +113,6 @@
 				Width="75"
 				HorizontalAlignment="Left"
 				VerticalAlignment="Top"
-				FontFamily="Consolas"
-				FontSize="16"
 				Margin="15,0,0,0"
 				Click="CancelBtn_OnClick" />
 		</StackPanel>

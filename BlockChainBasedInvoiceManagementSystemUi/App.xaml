@@ -5,6 +5,17 @@
 	StartupUri="MainWindow.xaml"
 	Exit="App_OnExit">
 	<Application.Resources>
-
+		<Style TargetType="{x:Type TextBlock}">
+			<Style.Setters>
+				<Setter Property="FontFamily" Value="Consolas"/>
+				<Setter Property="FontSize" Value="16"/>
+			</Style.Setters>
+		</Style>
+		<Style TargetType="{x:Type Button}">
+			<Style.Setters>
+				<Setter Property="FontFamily" Value="Consolas"/>
+				<Setter Property="FontSize" Value="16"/>
+			</Style.Setters>
+		</Style>
 	</Application.Resources>
 </Application>

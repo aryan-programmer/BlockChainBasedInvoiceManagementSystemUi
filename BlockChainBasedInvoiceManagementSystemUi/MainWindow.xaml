@@ -23,37 +23,48 @@
 	<Grid>
 		<Menu FontFamily="Consolas" VerticalAlignment="Top" FontSize="16" Height="21">
 			<MenuItem Header="File">
-				<MenuItem Command="local:CustomCommands.GenerateKeys" />
+				<MenuItem Header="New">
+					<MenuItem Command="local:CustomCommands.GenerateKeys" Header="Key pair" />
+				</MenuItem>
 				<Separator />
 				<MenuItem Command="local:CustomCommands.Options" />
 				<Separator />
 				<MenuItem Command="local:CustomCommands.Exit" />
 			</MenuItem>
+			<MenuItem Header="View" IsEnabled="{Binding Source={x:Static local:ServerProcess.I}, Path=IsStarted}">
+				<MenuItem Header="My invoices" Click="MyInvoicesMenu_OnClick" />
+				<MenuItem Header="My pending invoices" Click="MyPendingInvoices_OnClick" />
+			</MenuItem>
+			<MenuItem Header="Tools" IsEnabled="{Binding Source={x:Static local:ServerProcess.I}, Path=IsStarted}">
+				<MenuItem Header="Add new invoice" />
+				<Separator />
+				<MenuItem Header="Mine all in pool" />
+			</MenuItem>
 		</Menu>
 		<Grid Margin="0,21,0,0">
-			<Button
-				x:Name="ShowWhenServerOff"
-				FontFamily="Consolas"
-				Content="Start Server"
-				HorizontalAlignment="Center"
-				VerticalAlignment="Center"
-				FontSize="30"
-				Visibility="Visible"
-				Click="StartCommandLineApiBtn_OnClick"
-				Width="247.4"
-				Margin="0,0,0,50" />
-			<Button
-				x:Name="ShowWhenServerOn"
-				FontFamily="Consolas"
-				Content="Stop Server!"
-				HorizontalAlignment="Center"
-				VerticalAlignment="Center"
-				FontSize="30"
-				Visibility="Visible"
-				Background="OrangeRed"
-				Click="StopCommandLineApiServerBtn_OnClick"
-				Width="247.4"
-				Margin="0,0,0,50" />
+			<local:IfElse V="{Binding Source={x:Static local:ServerProcess.I}, Path=IsStarted}" FontSize="30">
+				<local:IfElse.Then>
+					<Button
+						Content="Stop Server!"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Background="OrangeRed"
+						Click="StopCommandLineApiServerBtn_OnClick"
+						Width="150"
+						Margin="0,0,0,50"
+						FontWeight="Bold" />
+				</local:IfElse.Then>
+				<local:IfElse.Else>
+					<Button
+						Content="Start Server"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Click="StartCommandLineApiBtn_OnClick"
+						Width="150"
+						Margin="0,0,0,50"
+						FontWeight="Bold" />
+				</local:IfElse.Else>
+			</local:IfElse>
 		</Grid>
 	</Grid>
 </Window>

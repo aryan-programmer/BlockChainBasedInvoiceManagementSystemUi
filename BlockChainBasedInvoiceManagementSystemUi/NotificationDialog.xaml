@@ -20,8 +20,6 @@
 			<TextBlock
 				x:Name="MessageTextBox"
 				Margin="0,10,0,0"
-				FontSize="16"
-				FontFamily="Consolas"
 				TextWrapping="Wrap" />
 		</StackPanel>
 		<Image
@@ -45,8 +43,6 @@
 				HorizontalAlignment="Right"
 				VerticalAlignment="Bottom"
 				Width="85"
-				FontSize="16"
-				FontFamily="Consolas"
 				Click="PositiveBtn_Click" />
 			<Button
 				x:Name="NegativeBtn"
@@ -55,8 +51,6 @@
 				VerticalAlignment="Bottom"
 				Visibility="Collapsed"
 				Width="85"
-				FontSize="16"
-				FontFamily="Consolas"
 				Click="NegativeBtn_Click"
 				Margin="10,0,0,0" />
 		</StackPanel>

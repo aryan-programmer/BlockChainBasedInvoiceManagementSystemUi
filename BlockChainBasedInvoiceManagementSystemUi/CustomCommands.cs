@@ -27,9 +27,7 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			 "Generate Keys",
 			 "GenerateKeys",
 			 typeof(CustomCommands),
-			 new InputGestureCollection {
-				 new KeyGesture(Key.G, ModifierKeys.Control)
-			 }
+			 new InputGestureCollection()
 			);
 	}
 }

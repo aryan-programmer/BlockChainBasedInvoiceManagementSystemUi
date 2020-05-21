@@ -38,7 +38,6 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="Auto" />
-			<!--<RowDefinition Height="Auto" />-->
 			<RowDefinition />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
@@ -49,14 +48,15 @@
 		<TextBlock
 			Grid.Row="0"
 			Grid.Column="0"
-			FontFamily="Consolas"
 			Height="25"
 			Margin="0,10,0,0"
 			TextWrapping="Wrap"
 			VerticalAlignment="Top"
 			Text="Command line API file"
-			FontSize="16"
-			TextAlignment="Right" HorizontalAlignment="Right" />
+			TextAlignment="Right"
+			HorizontalAlignment="Right"
+			FontFamily="Consolas"
+			FontSize="16" />
 		<StackPanel
 			Grid.Row="0"
 			Grid.Column="1"
@@ -66,10 +66,8 @@
 			<Button
 				x:Name="CommandLineApiFile_Browse_Btn"
 				Height="25"
-				FontSize="16"
 				VerticalAlignment="Top"
 				Margin="0"
-				FontFamily="Consolas"
 				Width="75"
 				HorizontalAlignment="Left"
 				Click="CommandLineApiFile_Browse_Btn_OnClick">
@@ -81,21 +79,20 @@
 				BorderThickness="0"
 				IsReadOnly="True"
 				Margin="0,5,0,0"
-				FontFamily="Consolas"
-				TextWrapping="Wrap" FontSize="14" />
+				TextWrapping="Wrap"
+				FontSize="14"
+				FontFamily="Consolas" />
 		</StackPanel>
 		<!--#endregion-->
 		<!--#region API Port -->
 		<TextBlock
 			Grid.Row="1"
 			Grid.Column="0"
-			FontFamily="Consolas"
 			HorizontalAlignment="Right"
 			Height="25"
 			Margin="0,10,0,0"
 			Text="API Port"
 			VerticalAlignment="Top"
-			FontSize="16"
 			TextAlignment="Right" />
 		<TextBox
 			Grid.Row="1"
@@ -107,8 +104,9 @@
 			TextWrapping="Wrap"
 			VerticalAlignment="Top"
 			Width="80"
+			FontFamily="Consolas"
 			FontSize="16"
-			Validation.ErrorTemplate="{StaticResource ValidationTemplate}" FontFamily="Consolas">
+			Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
 			<TextBox.Text>
 				<Binding
 					Path="ApiPort"
@@ -125,13 +123,11 @@
 		<TextBlock
 			Grid.Row="2"
 			Grid.Column="0"
-			FontFamily="Consolas"
 			HorizontalAlignment="Right"
 			Height="25"
 			Margin="0,10,0,0"
 			VerticalAlignment="Top"
 			Text="P2P Port"
-			FontSize="16"
 			TextAlignment="Right" />
 		<TextBox
 			Grid.Row="2"
@@ -143,9 +139,9 @@
 			TextWrapping="Wrap"
 			VerticalAlignment="Top"
 			Width="80"
+			FontFamily="Consolas"
 			FontSize="16"
-			Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
-			FontFamily="Consolas">
+			Validation.ErrorTemplate="{StaticResource ValidationTemplate}">
 			<TextBox.Text>
 				<Binding
 					Path="P2PPort"
@@ -163,13 +159,11 @@
 		<TextBlock
 			Grid.Row="3"
 			Grid.Column="0"
-			FontFamily="Consolas"
 			HorizontalAlignment="Right"
 			Height="25"
 			Margin="0,10,0,0"
 			VerticalAlignment="Top"
 			Text="Peers"
-			FontSize="16"
 			TextAlignment="Right" />
 		<StackPanel
 			Grid.Row="3"
@@ -181,11 +175,11 @@
 				x:Name="PeersTextBox"
 				Height="25"
 				TextWrapping="Wrap"
+				FontFamily="Consolas"
 				FontSize="16"
 				Validation.ErrorTemplate="{StaticResource ValidationTemplate}"
 				VerticalAlignment="Top"
-				Margin="0"
-				FontFamily="Consolas">
+				Margin="0">
 				<TextBox.Text>
 					<Binding
 						Path="Peers"
@@ -201,7 +195,7 @@
 			<TextBlock
 				VerticalAlignment="Top"
 				FontSize="12"
-				Margin="0" FontFamily="Consolas"
+				Margin="0"
 				Text="Format: 192.168.0.11:4000,192.168.0.15:4000,192.168.0.17:5000,website.com:7000" Height="15" />
 		</StackPanel>
 		<!--#endregion-->
@@ -209,14 +203,12 @@
 		<TextBlock
 			Grid.Row="4"
 			Grid.Column="0"
-			FontFamily="Consolas"
 			HorizontalAlignment="Right"
 			Height="25"
 			Margin="0,10,0,0"
 			TextWrapping="Wrap"
 			VerticalAlignment="Top"
 			Text="Public key file"
-			FontSize="16"
 			TextAlignment="Right" />
 		<StackPanel
 			Grid.Row="4"
@@ -227,10 +219,8 @@
 			<Button
 				x:Name="PublicKeyFile_Browse_Btn"
 				Height="25"
-				FontSize="16"
 				VerticalAlignment="Top"
 				Margin="0"
-				FontFamily="Consolas"
 				Width="75"
 				HorizontalAlignment="Left"
 				Click="PublicKeyFile_Browse_Btn_OnClick">
@@ -249,7 +239,6 @@
 		<!--#endregion-->
 		<!--#region Private key file -->
 		<TextBlock
-			FontFamily="Consolas"
 			Grid.Row="5"
 			Grid.Column="0"
 			HorizontalAlignment="Right"
@@ -258,7 +247,6 @@
 			TextWrapping="Wrap"
 			VerticalAlignment="Top"
 			Text="Private key file"
-			FontSize="16"
 			TextAlignment="Right" />
 		<StackPanel
 			Grid.Row="5"
@@ -268,10 +256,8 @@
 			<Button
 				x:Name="PrivateKeyFile_Browse_Btn"
 				Height="25"
-				FontSize="16"
 				VerticalAlignment="Top"
 				Margin="0"
-				FontFamily="Consolas"
 				Width="75"
 				HorizontalAlignment="Left"
 				Click="PrivateKeyFile_Browse_Btn_OnClick">
@@ -288,29 +274,6 @@
 				TextWrapping="Wrap" />
 		</StackPanel>
 		<!--#endregion-->
-		<!--#region Private key password -->
-		<!--<TextBlock
-			Grid.Row="6"
-			Grid.Column="0"
-			HorizontalAlignment="Right"
-			Height="25"
-			Margin="0,10,0,0"
-			TextWrapping="Wrap"
-			VerticalAlignment="Top"
-			Text="Private key password"
-			FontSize="16"
-			TextAlignment="Right" Width="147.87" />
-		<PasswordBox
-			Grid.Row="6"
-			Grid.Column="1"
-			HorizontalAlignment="Left"
-			Height="25"
-			Margin="10,10,0,10"
-			VerticalAlignment="Top"
-			Width="300"
-			FontSize="16"
-			FontFamily="Consolas" />-->
-		<!--#endregion-->
 		<StackPanel
 			Grid.Row="6"
 			Grid.Column="1"
@@ -324,8 +287,6 @@
 				Height="25"
 				Width="75"
 				HorizontalAlignment="Left"
-				FontFamily="Consolas"
-				FontSize="16"
 				VerticalAlignment="Top"
 				Click="OkBtn_OnClick" />
 			<Button
@@ -335,8 +296,6 @@
 				Width="75"
 				HorizontalAlignment="Left"
 				VerticalAlignment="Top"
-				FontFamily="Consolas"
-				FontSize="16"
 				Margin="15,0,0,0"
 				Click="CancelBtn_OnClick" />
 		</StackPanel>

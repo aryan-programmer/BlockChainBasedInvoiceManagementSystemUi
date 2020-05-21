@@ -15,21 +15,34 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			Application
 			   .Current
 			   .Dispatcher
-			   .Invoke(() => NotificationDialog
-						  .ShowNotification(
-											"Block chain based invoice management system",
-											message,
-											SystemIcons.Error));
+			   .Invoke(() =>
+						   NotificationDialog
+							  .ShowNotification(
+												"Block chain based invoice management system",
+												message,
+												SystemIcons.Error));
+
+		public static void ShowWarningMBox(string message) =>
+			Application
+			   .Current
+			   .Dispatcher
+			   .Invoke(() =>
+						   NotificationDialog
+							  .ShowNotification(
+												"Block chain based invoice management system",
+												message,
+												SystemIcons.Information));
 
 		public static void ShowInfoMBox(string message) =>
 			Application
 			   .Current
 			   .Dispatcher
-			   .Invoke(() => NotificationDialog
-						  .ShowNotification(
-											"Block chain based invoice management system",
-											message,
-											SystemIcons.Information));
+			   .Invoke(() =>
+						   NotificationDialog
+							  .ShowNotification(
+												"Block chain based invoice management system",
+												message,
+												SystemIcons.Information));
 
 		public static bool ShowConfirmationMBox(string message) =>
 			NotificationDialog
@@ -95,13 +108,13 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 		) {
 			var errors = new List<string>();
 
-			if (!ValidatePort(apiPort)) 
+			if (!ValidatePort(apiPort))
 				errors.Add("Invalid API port, it must be a valid number more than 1000");
 
-			if (!ValidatePort(p2PPort)) 
+			if (!ValidatePort(p2PPort))
 				errors.Add("Invalid P2P port, it must be a valid number more than 1000");
 
-			if (apiPort == p2PPort) 
+			if (apiPort == p2PPort)
 				errors.Add("The P2P and API ports must not be equal");
 
 			return ValidateSettings_Rest_ShowErrors(
@@ -122,13 +135,13 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 		) {
 			var errors = new List<string>();
 
-			if (apiPort < 1000) 
+			if (apiPort < 1000)
 				errors.Add("Invalid API port, it must be a more than 1000");
 
-			if (p2PPort < 1000) 
+			if (p2PPort < 1000)
 				errors.Add("Invalid P2P port, it must be a more than 1000");
 
-			if (apiPort == p2PPort) 
+			if (apiPort == p2PPort)
 				errors.Add("The P2P and API ports must not be equal");
 
 			return ValidateSettings_Rest_ShowErrors(

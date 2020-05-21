@@ -5,6 +5,6 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 	///     Interaction logic for App.xaml
 	/// </summary>
 	public partial class App : Application {
-		private void App_OnExit(object sender, ExitEventArgs e) => ServerProcess.StopProcess();
+		private void App_OnExit(object sender, ExitEventArgs e) => ServerProcess.I.StopProcess();
 	}
 }
