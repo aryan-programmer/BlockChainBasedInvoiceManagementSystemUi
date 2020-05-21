@@ -30,16 +30,12 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 		private bool IsDataValid(string str) {
 			try {
 				var val = Convert.ToDouble(str);
-				if (IsTaxColumn && (val > 100)) {
-					return false;
-				}
+				if (IsTaxColumn && (val > 100)) return false;
 
 				var dot = str.IndexOf('.');
-				if (dot != -1) {
-					if (dot < (str.Length - 3)) {
+				if (dot != -1)
+					if (dot < (str.Length - 3))
 						return false;
-					}
-				}
 
 				return true;
 			} catch {

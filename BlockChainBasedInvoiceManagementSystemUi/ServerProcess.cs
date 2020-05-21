@@ -12,7 +12,7 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 	public class ServerProcess : INotifyPropertyChanged {
 		private bool isStarted /*
 				= true
-			//*///
+			//*/ //
 			;
 
 		private Process process;
@@ -43,11 +43,11 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			}
 
 			if (!ValidateSettings_ShowErrors(Settings.Default.CommandLineApiFile,
-											Settings.Default.ApiPort,
-											Settings.Default.P2PPort,
-											Settings.Default.Peers,
-											Settings.Default.PublicKeyFile,
-											Settings.Default.PrivateKeyFile))
+											 Settings.Default.ApiPort,
+											 Settings.Default.P2PPort,
+											 Settings.Default.Peers,
+											 Settings.Default.PublicKeyFile,
+											 Settings.Default.PrivateKeyFile))
 				return false;
 
 			SecureString password = PasswordPrompt("Please enter a password to encrypt the private key:");

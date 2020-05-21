@@ -117,13 +117,13 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			if (!ValidatePhoneNumber(phoneNumber))
 				errors.Add("Invalid phone number.");
 
-			if (products.Count == 0)
+			if (products.Count == 0) {
 				errors.Add("The number of products must be at least be 1.");
-			else {
-				if (products.Any(product => string.IsNullOrEmpty(product.name))) 
+			} else {
+				if (products.Any(product => string.IsNullOrEmpty(product.name)))
 					errors.Add("A product's name can't be empty.");
 
-				if (products.Any(product => string.IsNullOrEmpty(product.quantity))) 
+				if (products.Any(product => string.IsNullOrEmpty(product.quantity)))
 					errors.Add("A product's quantity can't be empty.");
 			}
 

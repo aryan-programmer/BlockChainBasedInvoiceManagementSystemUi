@@ -5,16 +5,17 @@ using static BlockChainBasedInvoiceManagementSystemUi.Utils;
 
 namespace BlockChainBasedInvoiceManagementSystemUi {
 	/// <summary>
-	/// Interaction logic for NewInvoiceWindow.xaml
+	///     Interaction logic for NewInvoiceWindow.xaml
 	/// </summary>
 	public partial class NewInvoiceWindow : Window {
+
+		private readonly List<InpProduct> products = new List<InpProduct>();
+
 		public NewInvoiceWindow() {
 			InitializeComponent();
 			DataGrid.ItemsSource = products;
 			Grid.DataContext     = this;
 		}
-
-		public List<InpProduct> products = new List<InpProduct>();
 
 		public string InvoiceNumber        { get; set; } = Guid.NewGuid().ToString();
 		public string PurchaserName        { get; set; } = "";
@@ -27,7 +28,7 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			purchaser = new Purchaser {
 				name        = PurchaserName,
 				phoneNumber = PurchaserPhoneNumber,
-				isVendor    = IsPurchaserVendor,
+				isVendor    = IsPurchaserVendor
 			}
 		};
 

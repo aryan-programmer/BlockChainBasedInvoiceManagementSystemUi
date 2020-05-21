@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace BlockChainBasedInvoiceManagementSystemUi {
 	// ReSharper disable InconsistentNaming
@@ -25,7 +23,7 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 	}
 
 	public class Inv {
-		public string invoiceNumber { get; set; } = "";
+		public string        invoiceNumber { get; set; } = "";
 		public List<Product> products      { get; set; }
 		public float         totalCost     { get; set; }
 		public Purchaser     purchaser     { get; set; }
@@ -87,17 +85,6 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 	}
 
 	public class UiInvoice {
-		public string          invoiceNumber        { get; set; }
-		public List<UiProduct> products             { get; set; }
-		public float           totalCost            { get; set; }
-		public string          signature            { get; set; }
-		public string          publicKey            { get; set; }
-		public string          date                 { get; set; }
-		public string          time                 { get; set; }
-		public DateTime        timestamp            { get; set; }
-		public string          purchaserPhoneNumber { get; set; }
-		public string          purchaserName        { get; set; }
-		public bool            isPurchaserVendor    { get; set; }
 
 		public UiInvoice(Invoice inv) {
 			timestamp = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
@@ -114,6 +101,18 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			purchaserName        = inv.invoice.purchaser.name;
 			isPurchaserVendor    = inv.invoice.purchaser.isVendor;
 		}
+
+		public string          invoiceNumber        { get; set; }
+		public List<UiProduct> products             { get; set; }
+		public float           totalCost            { get; set; }
+		public string          signature            { get; set; }
+		public string          publicKey            { get; set; }
+		public string          date                 { get; set; }
+		public string          time                 { get; set; }
+		public DateTime        timestamp            { get; set; }
+		public string          purchaserPhoneNumber { get; set; }
+		public string          purchaserName        { get; set; }
+		public bool            isPurchaserVendor    { get; set; }
 	}
 
 	#endregion

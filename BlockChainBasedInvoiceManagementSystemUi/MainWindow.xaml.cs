@@ -38,10 +38,8 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			var prevPublicKey = Settings.Default.PublicKeyFile;
 			var optionsWindow = new GenerateKeysWindow();
 			optionsWindow.ShowDialog();
-			var newPublicKey = Settings.Default.PublicKeyFile;
-			if (prevPublicKey != newPublicKey) {
-				publicKey = File.ReadAllText(newPublicKey);
-			}
+			var newPublicKey                             = Settings.Default.PublicKeyFile;
+			if (prevPublicKey != newPublicKey) publicKey = File.ReadAllText(newPublicKey);
 		}
 
 		private void GenerateKeysCmd_OnCanExecute(object sender, CanExecuteRoutedEventArgs e) =>
@@ -70,10 +68,10 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 		private void AddNewInvoiceMenu_OnClick(object sender, RoutedEventArgs e) {
 			try {
 				var window = new NewInvoiceWindow();
-				if(window.ShowDialog() != true)
+				if (window.ShowDialog() != true)
 					return;
 				InpInv inpInv = window.GetInpInv();
-				var invStr = new JsonSerializer().Serialize(new AddInvoice_SendData {data = inpInv});
+				var    invStr = new JsonSerializer().Serialize(new AddInvoice_SendData {data = inpInv});
 				var client = new RestClient($"http://localhost:{Settings.Default.ApiPort}/addInvoice") {
 					Timeout = -1
 				};
@@ -81,10 +79,9 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 				request.AddHeader("Content-Type", "application/json");
 				request.AddParameter("application/json", invStr, ParameterType.RequestBody);
 				IRestResponse response = client.Execute(request);
-				if(!string.IsNullOrEmpty(response.ErrorMessage)) {
+				if (!string.IsNullOrEmpty(response.ErrorMessage))
 					ShowErrorMBox(@"There was an error in adding the new invoice.");
-				}
-			} catch(Exception) {
+			} catch (Exception) {
 				ShowErrorMBox(@"There was an error in adding the new invoice.");
 			}
 		}
@@ -92,17 +89,18 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 		private void MyInvoicesMenu_OnClick(object sender, RoutedEventArgs e) {
 			try {
 				RestClient client =
-						new RestClient(
-									   $"http://localhost:{Settings.Default.ApiPort}/blocks"
-									  ) {
-							Timeout = -1
-						}.UseJson();
-				var request = new RestRequest(Method.GET);
+					new RestClient(
+								   $"http://localhost:{Settings.Default.ApiPort}/blocks"
+								  ) {
+						Timeout = -1
+					}.UseJson();
+				var           request  = new RestRequest(Method.GET);
 				IRestResponse response = client.Execute(request);
-				if(!string.IsNullOrEmpty(response.ErrorMessage)) {
+				if (!string.IsNullOrEmpty(response.ErrorMessage)) {
 					ShowErrorMBox(@"There was an error in getting the mined invoices.");
 					return;
 				}
+
 				var blocks = new JsonSerializer().Deserialize<List<Block>>(response);
 				List<UiInvoice> invoices =
 					(from block in blocks
@@ -112,7 +110,7 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 					 orderby inv.timestamp descending
 					 select inv)
 				   .ToList();
-				if(invoices.Count == 0) {
+				if (invoices.Count == 0) {
 					ShowWarningMBox(@"You don't have any mined invoices.
 Please add an invoice, mine it,
 or wait for someone else to mine it.
@@ -123,7 +121,7 @@ Then open this dialog.");
 					};
 					window.ShowDialog();
 				}
-			} catch(Exception) {
+			} catch (Exception) {
 				ShowErrorMBox(@"There was an error in parsing/showing the mined invoices");
 			}
 		}
@@ -131,17 +129,18 @@ Then open this dialog.");
 		private void MyPendingInvoices_OnClick(object sender, RoutedEventArgs e) {
 			try {
 				RestClient client =
-						new RestClient(
-									   $"http://localhost:{Settings.Default.ApiPort}/pendingInvoices"
-									  ) {
-							Timeout = -1
-						}.UseJson();
-				var request = new RestRequest(Method.GET);
+					new RestClient(
+								   $"http://localhost:{Settings.Default.ApiPort}/pendingInvoices"
+								  ) {
+						Timeout = -1
+					}.UseJson();
+				var           request  = new RestRequest(Method.GET);
 				IRestResponse response = client.Execute(request);
-				if(!string.IsNullOrEmpty(response.ErrorMessage)) {
+				if (!string.IsNullOrEmpty(response.ErrorMessage)) {
 					ShowErrorMBox(@"There was an error in getting the pending invoices.");
 					return;
 				}
+
 				List<UiInvoice> invoices =
 					(from invoice in new JsonSerializer().Deserialize<List<Invoice>>(response)
 					 where invoice.publicKey == publicKey
@@ -149,7 +148,7 @@ Then open this dialog.");
 					 orderby inv.timestamp descending
 					 select inv)
 				   .ToList();
-				if(invoices.Count == 0) {
+				if (invoices.Count == 0) {
 					ShowWarningMBox(@"You don't have any pending invoices.
 This may mean that all your invoices are already
 been mined or that you didn't add any invoices at all.");
@@ -159,7 +158,7 @@ been mined or that you didn't add any invoices at all.");
 					};
 					window.ShowDialog();
 				}
-			} catch(Exception) {
+			} catch (Exception) {
 				ShowErrorMBox(@"There was an error in parsing/showing the pending invoices");
 			}
 		}
@@ -169,13 +168,12 @@ been mined or that you didn't add any invoices at all.");
 				var client = new RestClient($"http://localhost:{Settings.Default.ApiPort}/mine") {
 					Timeout = -1
 				};
-				var request = new RestRequest(Method.POST);
+				var           request  = new RestRequest(Method.POST);
 				IRestResponse response = client.Execute(request);
-				if(!string.IsNullOrEmpty(response.ErrorMessage)) {
+				if (!string.IsNullOrEmpty(response.ErrorMessage))
 					ShowErrorMBox(@"There was an error in mining the invoices.");
-				}
 				ShowInfoMBox("Done!");
-			} catch(Exception) {
+			} catch (Exception) {
 				ShowErrorMBox(@"There was an error in mining the invoices.");
 			}
 		}

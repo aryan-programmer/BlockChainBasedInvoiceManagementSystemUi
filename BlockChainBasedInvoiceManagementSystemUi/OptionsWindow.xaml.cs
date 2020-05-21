@@ -10,7 +10,7 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 	public partial class OptionsWindow : Window {
 		public OptionsWindow() {
 			InitializeComponent();
-			Grid.DataContext = this;
+			Grid.DataContext                  = this;
 			CommandLineApiFile_TextBlock.Text = Settings.Default.CommandLineApiFile;
 			ApiPort                           = Settings.Default.ApiPort;
 			P2PPort                           = Settings.Default.P2PPort;
@@ -18,6 +18,10 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			PublicKeyFile_TextBlock.Text      = Settings.Default.PublicKeyFile;
 			PrivateKeyFile_TextBlock.Text     = Settings.Default.PrivateKeyFile;
 		}
+
+		public uint   ApiPort { get; set; }
+		public uint   P2PPort { get; set; }
+		public string Peers   { get; set; }
 
 		private void CommandLineApiFile_Browse_Btn_OnClick(object sender, RoutedEventArgs e) =>
 			CommandLineApiFile_TextBlock.Text = ShowFileDialogBox<OpenFileDialog>(new[] {
@@ -45,12 +49,12 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			var publicKeyFile      = PublicKeyFile_TextBlock.Text;
 			var privateKeyFile     = PrivateKeyFile_TextBlock.Text;
 			if (!ValidateSettings_ShowErrors(
-											commandLineApiFile,
-											apiPort,
-											p2PPort,
-											peers,
-											publicKeyFile,
-											privateKeyFile)
+											 commandLineApiFile,
+											 apiPort,
+											 p2PPort,
+											 peers,
+											 publicKeyFile,
+											 privateKeyFile)
 			) return;
 
 			Settings.Default["CommandLineApiFile"] = commandLineApiFile;
@@ -64,9 +68,5 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 		}
 
 		private void CancelBtn_OnClick(object sender, RoutedEventArgs e) => Close();
-
-		public uint ApiPort { get; set; }
-		public uint P2PPort { get; set; }
-		public string Peers { get; set; }
 	}
 }

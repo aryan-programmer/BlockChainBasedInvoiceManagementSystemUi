@@ -61,7 +61,8 @@
 					Grid.Row="0"
 					Grid.Column="1"
 					HorizontalAlignment="Left"
-					Text="{Binding (local:NewInvoiceWindow.PurchaserName), Mode=TwoWay}" Width="300" VerticalAlignment="Center" Margin="10" />
+					Text="{Binding (local:NewInvoiceWindow.PurchaserName), Mode=TwoWay}" Width="300" VerticalAlignment="Center"
+					Margin="10" />
 				<TextBlock
 					Grid.Row="1"
 					Grid.Column="0"
@@ -133,7 +134,8 @@
 					<DataGridTextColumn Width="120" Header="Name" Binding="{Binding (local:InpProduct.name)}" />
 					<DataGridTextColumn Width="120" Header="Quantity" Binding="{Binding (local:InpProduct.quantity)}" />
 					<local:DataGridSpecializedNumericColumn Width="120" Header="Cost (₹)" Binding="{Binding (local:InpProduct.cost)}" />
-					<local:DataGridSpecializedNumericColumn Width="120" Header="Tax (%)" Binding="{Binding (local:InpProduct.taxPercentage)}" IsTaxColumn="True"/>
+					<local:DataGridSpecializedNumericColumn Width="120" Header="Tax (%)"
+					                                        Binding="{Binding (local:InpProduct.taxPercentage)}" IsTaxColumn="True" />
 				</DataGrid.Columns>
 			</DataGrid>
 		</StackPanel>
