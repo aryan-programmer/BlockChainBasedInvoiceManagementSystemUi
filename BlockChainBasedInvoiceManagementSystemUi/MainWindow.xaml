@@ -38,7 +38,7 @@
 			<MenuItem Header="Tools" IsEnabled="{Binding Source={x:Static local:ServerProcess.I}, Path=IsStarted}">
 				<MenuItem Header="Add new invoice" Click="AddNewInvoiceMenu_OnClick" />
 				<Separator />
-				<MenuItem Header="Mine all in pool" />
+				<MenuItem Header="Mine all in pool" Click="MineAllInPoolMenu_OnClick" />
 			</MenuItem>
 		</Menu>
 		<Grid Margin="0,21,0,0">

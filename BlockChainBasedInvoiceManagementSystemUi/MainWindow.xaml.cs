@@ -163,5 +163,21 @@ been mined or that you didn't add any invoices at all.");
 				ShowErrorMBox(@"There was an error in parsing/showing the pending invoices");
 			}
 		}
+
+		private void MineAllInPoolMenu_OnClick(object sender, RoutedEventArgs e) {
+			try {
+				var client = new RestClient($"http://localhost:{Settings.Default.ApiPort}/mine") {
+					Timeout = -1
+				};
+				var request = new RestRequest(Method.POST);
+				IRestResponse response = client.Execute(request);
+				if(!string.IsNullOrEmpty(response.ErrorMessage)) {
+					ShowErrorMBox(@"There was an error in mining the invoices.");
+				}
+				ShowInfoMBox("Done!");
+			} catch(Exception) {
+				ShowErrorMBox(@"There was an error in mining the invoices.");
+			}
+		}
 	}
 }

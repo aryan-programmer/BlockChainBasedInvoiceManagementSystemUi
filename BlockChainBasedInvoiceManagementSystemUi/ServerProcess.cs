@@ -10,7 +10,7 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 	public delegate void ServerProcessExited(int errorCode, StreamReader stdout, StreamReader stderr);
 
 	public class ServerProcess : INotifyPropertyChanged {
-		private bool isStarted //*
+		private bool isStarted /*
 				= true
 			//*///
 			;
