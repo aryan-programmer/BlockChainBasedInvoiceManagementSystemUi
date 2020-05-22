@@ -52,6 +52,7 @@
 				IsReadOnly="True"
 				FontSize="14"
 				Margin="0,5,0,0"
+				FontFamily="Consolas"
 				TextWrapping="Wrap" />
 		</StackPanel>
 		<!--#endregion-->
@@ -87,6 +88,7 @@
 				BorderThickness="0"
 				IsReadOnly="True"
 				FontSize="14"
+				FontFamily="Consolas"
 				Margin="0,5,0,0"
 				TextWrapping="Wrap" />
 		</StackPanel>

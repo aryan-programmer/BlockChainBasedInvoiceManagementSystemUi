@@ -139,9 +139,7 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			string commandLineApiFile,
 			string apiPort,
 			string p2PPort,
-			string peers,
-			string publicKeyFile,
-			string privateKeyFile
+			string peers
 		) {
 			var errors = new List<string>();
 
@@ -154,12 +152,18 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			if (apiPort == p2PPort)
 				errors.Add("The P2P and API ports must not be equal");
 
-			return ValidateSettings_Rest_ShowErrors(
-													commandLineApiFile,
-													peers,
-													publicKeyFile,
-													privateKeyFile,
-													errors);
+			if (!File.Exists(commandLineApiFile))
+				errors.Add("The command line API file must refer to an executable, a batch file or command prompt file.");
+
+			if (!ValidatePeers(peers))
+				errors.Add("Invalid Peers list, it must be of a string of IPs/URLs of peers, with P2P ports, separated by commas");
+
+			if (errors.Count != 0) {
+				ShowErrorMBox(errors.Aggregate("There are some error(s):", (ret, err) => $"{ret}\n{err}"));
+				return false;
+			}
+
+			return true;
 		}
 
 		public static bool ValidateSettings_ShowErrors(
@@ -181,21 +185,6 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 			if (apiPort == p2PPort)
 				errors.Add("The P2P and API ports must not be equal");
 
-			return ValidateSettings_Rest_ShowErrors(
-													commandLineApiFile,
-													peers,
-													publicKeyFile,
-													privateKeyFile,
-													errors);
-		}
-
-		private static bool ValidateSettings_Rest_ShowErrors(
-			string              commandLineApiFile,
-			string              peers,
-			string              publicKeyFile,
-			string              privateKeyFile,
-			ICollection<string> errors
-		) {
 			if (!File.Exists(commandLineApiFile))
 				errors.Add("The command line API file must refer to an executable, a batch file or command prompt file.");
 

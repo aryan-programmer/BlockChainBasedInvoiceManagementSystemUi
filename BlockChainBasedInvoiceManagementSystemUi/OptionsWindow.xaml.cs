@@ -52,9 +52,7 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 											 commandLineApiFile,
 											 apiPort,
 											 p2PPort,
-											 peers,
-											 publicKeyFile,
-											 privateKeyFile)
+											 peers)
 			) return;
 
 			Settings.Default["CommandLineApiFile"] = commandLineApiFile;
