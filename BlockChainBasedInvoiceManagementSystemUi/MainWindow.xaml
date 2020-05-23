@@ -21,7 +21,11 @@
 			CanExecute="GenerateKeysCmd_OnCanExecute" />
 	</Window.CommandBindings>
 	<Grid>
-		<Menu FontFamily="Consolas" VerticalAlignment="Top" FontSize="16" Height="21">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Menu FontFamily="Consolas" FontSize="16">
 			<MenuItem Header="File">
 				<MenuItem Header="New">
 					<MenuItem Command="local:CustomCommands.GenerateKeys" Header="Key pair" />
@@ -41,28 +45,24 @@
 				<MenuItem Header="Mine all in pool" Click="MineAllInPoolMenu_OnClick" />
 			</MenuItem>
 		</Menu>
-		<Grid Margin="0,21,0,0">
-			<local:IfElse V="{Binding Source={x:Static local:ServerProcess.I}, Path=IsStarted}" FontSize="30">
+		<Grid Grid.Row="1">
+			<local:IfElse
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Width="150"
+				Margin="0,0,0,50"
+				V="{Binding Source={x:Static local:ServerProcess.I}, Path=IsStarted}"
+				FontWeight="Bold">
 				<local:IfElse.Then>
 					<Button
 						Content="Stop Server!"
-						HorizontalAlignment="Center"
-						VerticalAlignment="Center"
-						Background="OrangeRed"
-						Click="StopCommandLineApiServerBtn_OnClick"
-						Width="150"
-						Margin="0,0,0,50"
-						FontWeight="Bold" />
+						Background="#FF3E3E"
+						Click="StopCommandLineApiServerBtn_OnClick" />
 				</local:IfElse.Then>
 				<local:IfElse.Else>
 					<Button
 						Content="Start Server"
-						HorizontalAlignment="Center"
-						VerticalAlignment="Center"
-						Click="StartCommandLineApiBtn_OnClick"
-						Width="150"
-						Margin="0,0,0,50"
-						FontWeight="Bold" />
+						Click="StartCommandLineApiBtn_OnClick" />
 				</local:IfElse.Else>
 			</local:IfElse>
 		</Grid>

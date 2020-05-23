@@ -30,16 +30,18 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 		}
 
 		private void OptionsCmd_OnExecuted(object sender, ExecutedRoutedEventArgs e) {
-			var optionsWindow = new OptionsWindow();
-			optionsWindow.ShowDialog();
-		}
-
-		private void GenerateKeysCmd_OnClick(object sender, ExecutedRoutedEventArgs e) {
 			var prevPublicKey = Settings.Default.PublicKeyFile;
-			var optionsWindow = new GenerateKeysWindow();
+			var optionsWindow = new OptionsWindow();
 			optionsWindow.ShowDialog();
 			var newPublicKey                             = Settings.Default.PublicKeyFile;
 			if (prevPublicKey != newPublicKey) publicKey = File.ReadAllText(newPublicKey);
+		}
+
+		private void GenerateKeysCmd_OnClick(object sender, ExecutedRoutedEventArgs e) {
+			var genKeysWindow = new GenerateKeysWindow();
+			genKeysWindow.ShowDialog();
+			var publicKeyFile = Settings.Default.PublicKeyFile;
+			if(File.Exists(publicKeyFile)) publicKey = File.ReadAllText(publicKeyFile);
 		}
 
 		private void GenerateKeysCmd_OnCanExecute(object sender, CanExecuteRoutedEventArgs e) =>

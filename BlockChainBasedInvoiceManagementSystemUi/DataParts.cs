@@ -47,6 +47,8 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 
 	#endregion
 
+	#region Input Data Classes
+
 	public class InpProduct {
 		public string name          { get; set; }
 		public string quantity      { get; set; }
@@ -60,9 +62,15 @@ namespace BlockChainBasedInvoiceManagementSystemUi {
 		public Purchaser        purchaser     { get; set; }
 	}
 
+	#endregion
+
+	#region Sending JSON Data Classes
+
 	public class AddInvoice_SendData {
 		public InpInv data { get; set; }
 	}
+
+	#endregion
 
 	#region Parsed Data Classes designed to be easy to use in XAML
 
